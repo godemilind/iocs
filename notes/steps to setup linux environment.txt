@@ -1,0 +1,120 @@
+ restart tomcat and apache
+ sudo /etc/init.d/tomcat7 restart
+ sudo /etc/init.d/apache2 restart
+ 
+ logs folder var/logs/apache2
+
+
+https://www.hostinger.in/tutorials/how-to-install-tomcat-on-ubuntu/
+
+################################ Step 1: Install Java #################################
+
+sudo apt update
+
+sudo apt-get install openjdk-8-jdk
+
+################################ Step 2: Create Tomcat User ################################
+
+sudo groupadd tomcat
+
+sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+
+################################ Step 3: Install Tomcat on Ubuntu #################################
+
+cd /tmp
+
+curl -O https://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.17/bin/apache-tomcat-9.0.17.tar.gz
+
+################################ Step4: Update Permissions ##################################
+
+sudo mkdir /opt/tomcat
+cd /opt/tomcat
+
+Note: -- [ download tomcat on windows machine and copy to linux using winscp ]
+sudo tar xzvf /tmp/apache-tomcat-9.0.*tar.gz -C /opt/tomcat --strip-components=1
+sudo chgrp -R tomcat /opt/tomcat
+sudo chmod -R g+r conf
+sudo chmod g+x conf
+sudo chown -R tomcat webapps/ work/ temp/ logs/
+
+
+################################ Step5: Create a systemd Unit File ##################################
+
+sudo nano /etc/systemd/system/tomcat.service
+
+
+///////////////////////////////////////////////
+
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+Environment=CATALINA_Home=/opt/tomcat
+Environment=CATALINA_BASE=/opt/tomcat
+Environment=’CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC’
+Environment=’JAVA_OPTS.awt.headless=true -Djava.security.egd=file:/dev/v/urandom’
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+User=tomcat
+Group=tomcat
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+
+WantedBy=multi-user.target
+
+//////////////////////////////////////////////
+
+	sudo systemctl daemon-reload
+	cd /opt/tomcat/bin
+	sudo ./startup.sh run
+
+or 
+
+	export CATALINA_HOME=/path/to/tomcat
+	$CATALINA_HOME/bin/startup.sh
+	ps -ef | grep java | grep 8080
+	
+		Note: -- if Above command failed, thento gain access
+		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		export CATALINA_HOME=/path/to/tomcat
+		sudo chown -R $USER:$USER $CATALINA_HOME
+		chmod -R a+X tomcat/
+		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+################################# Step6: Adjust the Firewall ###################################
+
+sudo ufw allow 8080
+
+################################# Step 7: Configure the Tomcat Web Management Interface ################################
+
+sudo nano /opt/tomcat/conf/tomcat-users.xml
+
+Now, define the user who can access the files and add username and passwords:
+
+tomcat-users.xml — Admin User
+<tomcat-users . . .>
+<tomcat-users . . .>
+<user username="admin" password="password" roles="manager-gui,admin-gui"/>
+</tomcat-users>
+
+
+sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
+sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
+sudo systemctl restart tomcat
+
+
+################################# Step 8: Access the Online Interface #################################
+
+http://server_domain_or_IP:8080/manager/html
+
+
