@@ -26,12 +26,12 @@ public class StudentServiceTest {
         student.setFirstName("Milind");
         student.setLastName("Gode");
         student.setAddress("B-34/B-wing/103, Gokuldham, Goregaon East");
-        student.setAge(37);
+        student.setAge(38);
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
         student.setBirthDate(formatter.parse("01-FEB-1982"));
         student.setCity("Mumbai");
         student.setState("Maharashtra");
-        student.setEmail("godemilind@gmail.com");
+        student.setEmail("milind.gode@gmail.com");
         student.setGrade("A");
         student.setGuardianName("Subhash Gode");
         student.setPhoneNumber(9967656311l);
