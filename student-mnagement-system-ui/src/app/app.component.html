@@ -10,7 +10,7 @@
           <!-- Sidebar - Brand -->
           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
             <div class="sidebar-brand-icon rotate-n-15">
-              <i class="fas fa-laugh-wink"></i>
+              <fa-icon [icon]="faLaughWink"></fa-icon>
             </div>
             <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
           </a>
@@ -21,7 +21,7 @@
           <!-- Nav Item - Dashboard -->
           <li class="nav-item active">
             <a class="nav-link" href="dashboard">
-              <i class="fas fa-fw fa-tachometer-alt"></i>
+              <fa-icon [icon]="faTachometerAlt"></fa-icon>
               <span>Dashboard</span></a>
           </li>
     
@@ -36,7 +36,7 @@
           <!-- Nav Item - Pages Collapse Menu -->
           <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-              <i class="fas fa-fw fa-cog"></i>
+              <fa-icon [icon]="faCog"></fa-icon>
               <span>Components</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -52,6 +52,7 @@
           <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
               <i class="fas fa-fw fa-wrench"></i>
+              <fa-icon [icon]="faWrench"></fa-icon>
               <span>Utilities</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -77,6 +78,7 @@
           <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
               <i class="fas fa-fw fa-folder"></i>
+              <fa-icon [icon]="faFolder"></fa-icon>
               <span>Pages</span>
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -97,6 +99,7 @@
           <li class="nav-item">
             <a class="nav-link" href="charts.html">
               <i class="fas fa-fw fa-chart-area"></i>
+              <fa-icon [icon]="faChartArea"></fa-icon>
               <span>Charts</span></a>
           </li>
     
@@ -104,6 +107,7 @@
           <li class="nav-item">
             <a class="nav-link" href="tables.html">
               <i class="fas fa-fw fa-table"></i>
+              <fa-icon [icon]="faTable"></fa-icon>
               <span>Tables</span></a>
           </li>
     
@@ -133,6 +137,7 @@
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
+            <fa-icon [icon]="faBars"></fa-icon>
           </button>
 
           <!-- Topbar Search -->
@@ -142,6 +147,7 @@
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
+                  <fa-icon [icon]="faSearch"></fa-icon>
                 </button>
               </div>
             </div>
@@ -154,6 +160,7 @@
             <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
+                <fa-icon [icon]="faSearch"></fa-icon>
               </a>
               <!-- Dropdown - Messages -->
               <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
@@ -163,6 +170,7 @@
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
+                        <fa-icon [icon]="faSearch"></fa-icon>
                       </button>
                     </div>
                   </div>
@@ -174,6 +182,7 @@
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
+                <fa-icon [icon]="faBell"></fa-icon>
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">3+</span>
               </a>
@@ -186,6 +195,7 @@
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
+                      <fa-icon [icon]="faFileAlt"></fa-icon>
                     </div>
                   </div>
                   <div>
@@ -197,6 +207,7 @@
                   <div class="mr-3">
                     <div class="icon-circle bg-success">
                       <i class="fas fa-donate text-white"></i>
+                      <fa-icon [icon]="faDonate"></fa-icon>
                     </div>
                   </div>
                   <div>
@@ -208,6 +219,7 @@
                   <div class="mr-3">
                     <div class="icon-circle bg-warning">
                       <i class="fas fa-exclamation-triangle text-white"></i>
+                      <fa-icon [icon]="faExclamationTriangle"></fa-icon>
                     </div>
                   </div>
                   <div>
@@ -223,6 +235,7 @@
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
+                <fa-icon [icon]="faEnvelope"></fa-icon>
                 <!-- Counter - Messages -->
                 <span class="badge badge-danger badge-counter">7</span>
               </a>
@@ -287,19 +300,23 @@
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <fa-icon [icon]="faUser"></fa-icon>
                   Profile
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <fa-icon [icon]="faCogs"></fa-icon>
                   Settings
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <fa-icon [icon]="faList"></fa-icon>
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <fa-icon [icon]="faSignOutAlt"></fa-icon>
                   Logout
                 </a>
               </div>
@@ -317,7 +334,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><fa-icon [icon]="faDownload"></fa-icon><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
           <!-- Content Row -->
