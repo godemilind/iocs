@@ -9,6 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {DataTablesModule} from 'angular-datatables';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule} from '@angular/forms';
+import * as bootstrap from "bootstrap";
+import * as $ from "jquery";
 
 @NgModule({
   declarations: [
@@ -20,7 +24,9 @@ import {DataTablesModule} from 'angular-datatables';
     BrowserModule,
     FontAwesomeModule,
     AppRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    HttpClientModule,
+    FormsModule,    
   //   RouterModule.forRoot([
   //     {path: 'student',component: StudentComponent}
   //  ])    

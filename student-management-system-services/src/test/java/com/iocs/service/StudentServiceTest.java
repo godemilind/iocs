@@ -23,21 +23,21 @@ public class StudentServiceTest {
     @Test
     public void testSaveStudent() throws ParseException {
         Student student = new Student();
-        student.setFirstName("Milind");
+        student.setFirstName("Shyamal");
         student.setLastName("Gode");
         student.setAddress("B-34/B-wing/103, Gokuldham, Goregaon East");
-        student.setAge(38);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-        student.setBirthDate(formatter.parse("01-FEB-1982"));
+        student.setAge(33);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy", Locale.ENGLISH);
+        student.setBirthDate(formatter.parse("18-01-1987"));
         student.setCity("Mumbai");
         student.setState("Maharashtra");
         student.setEmail("milind.gode@gmail.com");
         student.setGrade("A");
-        student.setGuardianName("Subhash Gode");
-        student.setPhoneNumber(9967656311l);
+        student.setGuardianName("Milind Gode");
+        student.setPhoneNumber(9820212086l);
         student.setPincode(400063l);
         student.setSchoolName("Yashodham High School");
-        student.setActivities("Swimming");
+        student.setActivities("Dancing");
         studentService.saveStudent(student);
         List<Student> students = studentService.findAllStudents();
         System.out.println(students);

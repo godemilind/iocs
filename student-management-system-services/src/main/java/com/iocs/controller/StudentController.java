@@ -1,6 +1,7 @@
 package com.iocs.controller;
 
 import com.iocs.bo.Student;
+import com.iocs.exceptions.RecordNotFoundException;
 import com.iocs.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/students")
@@ -30,10 +28,10 @@ public class StudentController {
     private boolean sedan = false;
 
     @GetMapping
-    public ResponseEntity<List<Student>> getAllEmployees() {
+    public ResponseEntity<List<Student>> findAllStudents() {
         List<Student> list = studentService.findAllStudents();
         //List<Student> list = studentService.findAllByEmailDesc();
-        logger.info("Get Employees");
+        logger.info("Get Students");
 
         return new ResponseEntity<List<Student>>(list, new HttpHeaders(), HttpStatus.OK);
     }
@@ -46,31 +44,25 @@ public class StudentController {
 //        return new ResponseEntity<List<Student>>(list, new HttpHeaders(), HttpStatus.OK);
 //    }
 //
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id)
-//            throws RecordNotFoundException {
-//        Employee entity = studentService.getEmployeeById(id);
-//        logger.info("Get Employees by id");
-//        return new ResponseEntity<Employee>(entity, new HttpHeaders(), HttpStatus.OK);
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> getStudentById(@PathVariable("id") Long id)
+            throws RecordNotFoundException {
+        Optional<Student> student = studentService.findStudentById(id);
+        logger.info("Get student by id");
+        return new ResponseEntity<Student>(student.get(), new HttpHeaders(), HttpStatus.OK);
+    }
 //
 ////    public ResponseEntity<List<Employee>> findAllEmployeesByFilter(){
 ////
 ////    }
 //
-//    @PostMapping
-//    public ResponseEntity<Employee> createOrUpdateEmployee(@Valid @RequestBody Employee employee, HttpSession session)
-//            throws RecordNotFoundException {
-//        String str = (String)session.getAttribute("TEST");
-//        if(str == null || str.isEmpty()){
-//            session.setAttribute("TEST","TEST");
-//        }
-//        logger.info("Create/ Update employee");
-//
-//        this.populateEmployee(employee);
-//        Employee updated = studentService.createOrUpdateEmployee(employee);
-//        return new ResponseEntity<Employee>(updated, new HttpHeaders(), HttpStatus.OK);
-//    }
+    @PostMapping
+    public ResponseEntity<Student> createOrUpdateStudent(@Valid @RequestBody Student student, HttpSession session)
+            throws RecordNotFoundException {
+        logger.info("Create/ Update employee");
+        Student updatedStudent = studentService.saveStudent(student);
+        return new ResponseEntity<Student>(updatedStudent, new HttpHeaders(), HttpStatus.OK);
+    }
 //
 //    public Employee populateEmployee(Employee employee){
 //        // code to add address
@@ -106,11 +98,11 @@ public class StudentController {
 ////        return new ResponseEntity<Employee>(updated, new HttpHeaders(), HttpStatus.OK);
 ////    }
 //
-//    @DeleteMapping("/{id}")
-//    public HttpStatus deleteEmployeeById(@PathVariable("id") Long id)
-//            throws RecordNotFoundException {
-//        logger.info("delete employee");
-//        studentService.deleteEmployeeById(id);
-//        return HttpStatus.OK;
-//    }
+    @DeleteMapping("/{id}")
+    public HttpStatus deleteStudentById(@PathVariable("id") Long id)
+            throws RecordNotFoundException {
+        logger.info("delete student");
+        studentService.deleteStudent(id);
+        return HttpStatus.OK;
+    }
 }
