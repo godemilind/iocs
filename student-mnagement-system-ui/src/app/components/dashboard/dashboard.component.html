@@ -1,0 +1,180 @@
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Students</h6>
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary" (click)="addStudent(student)" class="btn btn-primary" data-toggle="modal" data-target="#student-form">Add Student</button><br>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    
+                    <table *ngIf="students" id="table1"  class="table table-striped table-bordered table-sm row-border hover" [dtTrigger]="dtTrigger" datatable [dtOptions]="dtOptions">
+                        <thead>
+                          <tr>
+                            <th>Student Name</th>
+                            <th>Birth Date</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         <tr *ngFor="let student of students">
+                               <td>{{student.firstName}} {{student.lastName}}</td>
+                               <td>{{student.birthDate}}</td>
+                               <td>{{student.phoneNumber}}</td>
+                               <td>{{student.email}}</td>
+                               <td><button (click)="editStudent(student)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#student-form"><fa-icon [icon]="faEdit"></fa-icon></button> <button (click)="deleteStudent(student.id)" class="btn btn-primary btn-sm"><fa-icon [icon]="faTrash"></fa-icon></button></td>
+                           </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+</div>            
+
+<div class="modal" id="student-form">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Student</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+  
+        <form #studentForm = "ngForm" novalidate (ngSubmit)="updateStudent(studentForm.value)">
+        <!-- Modal body -->
+        <div class="modal-body">
+            
+                <input type="hidden" id="id" name="id" [(ngModel)]="student.id" />
+                <div class="row">
+                    <div class="col-4">
+                        <label for="firstName">First Name:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="test" class="form-control" placeholder="First Name" name="firstName" id="firstName"
+                        [(ngModel)]="student.firstName" required #firstName="ngModel" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="lastName">Last Name:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="Last Name" name="lastName" id="lastName" 
+                        [(ngModel)]="student.lastName" required #lastName="ngModel" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="guardianName">Guardian Name:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="Guardian Name" name="guardianName" id="guardianName" 
+                        [(ngModel)]="student.guardianName" #guardianName="ngModel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="email">Email:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="email" class="form-control" placeholder="Email" id="email" name="email" 
+                        [(ngModel)]="student.email" #email="ngModel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="address">Address:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="Address" id="address" name="address" 
+                        [(ngModel)]="student.address" #address="ngModel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="state">State:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="State" id="state" name="state"  [(ngModel)]="student.state">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="city">City:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="City" id="city"  name="city"  [(ngModel)]="student.city">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="pincode">Pincode:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="Pincode" id="pincode"  name="pincode" [(ngModel)]="student.pincode">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="phoneNumber">PhoneNumber:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="PhoneNumber" id="phoneNumber" name="phoneNumber" [(ngModel)]="student.phoneNumber">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="birthDate">Birth Date:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="date" class="form-control" placeholder="birthDate" id="birthDate" name="birthDate" [(ngModel)]="student.birthDate">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="grade">Grade:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="grade" id="grade" name="grade" [(ngModel)]="student.grade">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="activities">Activities:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="activities" id="activities" name="activities" [(ngModel)]="student.activities">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="birthDate">Age:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="age" id="age" name="age" [(ngModel)]="student.age">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="schoolName">School Name:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" placeholder="schoolName" id="schoolName" name="schoolName" [(ngModel)]="student.schoolName">
+                    </div>
+                </div>
+            
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button class="btn btn-primary" (click)="studentForm.reset()" >Reset</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!studentForm.form.valid">Save</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
